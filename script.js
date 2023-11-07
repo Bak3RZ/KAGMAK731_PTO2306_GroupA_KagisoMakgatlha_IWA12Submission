@@ -27,28 +27,48 @@ const STATUS_MAP = {
 
 // Edit below line 
 
-// Group elements by Class name using querySelectorAll
-const statusElements = document.querySelectorAll('.status');
-const reserveButtons = document.querySelectorAll('.reserve');
-const checkoutButtons = document.querySelectorAll('.checkout');
-const checkinButtons = document.querySelectorAll('.checkin');
 
-// Loop elements and update propeties based on the STATUS_MAP
-for (let i = 0; i < statusElements.length; i++) {
-    const statusText = statusElements[i].textContent.trim().replace('Status: ', ''); 
-    // Get the status text
-    const statusInfo = STATUS_MAP[statusText];
+const books = [ {
+    status : document.querySelector('#book1.status').innerText,html:{
+    status : document.querySelector('#book1.status'),
+    reserve : document.querySelector('#book1.reserve'),
+    checkoutButtons : document.querySelector('#book1.checkout'),
+    checkinButtons : document.querySelector('#book1.checkin'),
+ },   
+},
+{
+    status : document.querySelector('#book2.status').innerText,html:{
+    status : document.querySelector('#book2.status'),
+    reserve : document.querySelector('#book2.reserve'),
+    checkoutButtons : document.querySelector('#book2.checkout'),
+    checkinButtons : document.querySelector('#book2.checkin'),
+},
+},
+{
+    status : document.querySelector('#book3.status').innerText,html:{
+    status : document.querySelector('#book3.status'),
+    reserve : document.querySelector('#book3.reserve'),
+    checkoutButtons : document.querySelector('#book3.checkout'),
+    checkinButtons : document.querySelector('#book3.checkin'),
+},
+},
+]
 
-    // Match colour to STATUS_MAP
-    statusElements[i].style.color = statusInfo.color;
 
-    // Enable or disable buttons based on STATUS_MAP
-    reserveButtons[i].disabled = !statusInfo.canReserve;
-    checkoutButtons[i].disabled = !statusInfo.canCheckout;
-    checkinButtons[i].disabled = !statusInfo.canCheckIn;
+books[0].html.checkinButtons.style.color = '' // Must remain undefined
+books[0].html.status.style.color = STATUS_MAP.status.color; // We use STATUS_MAP.status to access the properties of the specific status of the book.
+books[0].html.reserve.disabled = !STATUS_MAP.status.canReserve;
+books[0].html.checkoutButtons.disabled = !STATUS_MAP.status.canCheckout; //we use the ! operator to reverse the logic because canReserve, canCheckout, and canCheckIn are set to true if the action is allowed, and we want to disable the button if it's not allowed.
+books[0].html.checkinButtons.disbaled = !STATUS_MAP.status.canCheckIn;
 
-    // Set button text color to grayscale
-    reserveButtons[i].style.color = 'black';
-    checkoutButtons[i].style.color = 'black';
-    checkinButtons[i].style.color = 'black';
-}
+books[1].html.checkinButtons.style.color = '' // Must remain undefined
+books[1].html.status.style.color = STATUS_MAP.status.color;
+books[1].html.reserve.disabled = !STATUS_MAP.status.canReserve;
+books[1].html.checkoutButtons.disabled = !STATUS_MAP.status.canCheckout;
+books[1].html.checkinButtons.disbaled = !STATUS_MAP.status.canCheckIn;
+
+books[2].html.checkinButtons.style.color = '' // Must remain undefined
+books[2].html.status.style.color = STATUS_MAP.status.color;
+books[2].html.reserve.disabled = !STATUS_MAP.status.canReserve;
+books[2].html.checkoutButtons.disabled = !STATUS_MAP.status.canCheckout;
+books[2].html.checkinButtons.disbaled = !STATUS_MAP.status.canCheckIn;
